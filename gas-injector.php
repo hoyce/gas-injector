@@ -13,11 +13,6 @@
  */
 
 /**
- * Loads jQuery if not loaded.
- */
-wp_enqueue_script('jquery');
-
-/**
  * WP Hooks
  **/
 add_action('init', 'load_gas_injector_translation_file');
@@ -53,6 +48,11 @@ function admin_register_gas_for_wordpress_head() {
  * Inserts the Google Analytics tracking code and domain.
  */
 function insert_google_analytics_code_and_domain() {
+    /**
+     * Loads jQuery if not loaded.
+     */
+    wp_enqueue_script('jquery');
+
     if (!current_user_can('edit_posts')  && get_option('ua_tracking_code') != "") {
         echo "<!-- GAS Injector for Wordpress from http://www.geckosolutions.se/blog/wordpress-plugins/ -->\n";
         echo get_gas_tracking_code();
